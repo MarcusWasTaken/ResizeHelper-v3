@@ -1,0 +1,90 @@
+.panel {
+  background: #fff;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+
+  .mdl-list {
+    margin: 0;
+    &:empty {
+      padding: 16px 0;  
+    }
+  }
+
+  .mdl-layout__container {
+    position: static;
+  }
+
+  .mdl-layout__header-row {
+    padding: 0 16px;
+  }
+
+  +.panel {
+    margin-top: 16px !important;
+  }
+
+  &__title {
+    padding: 16px;
+    position: relative;
+
+    &-text {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: normal;
+    }
+
+    .mdl-button--fab {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__body {
+    padding: 16px;
+
+    >ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      >li {
+        &:not(:first-child) {
+          padding-top: 16px;  
+        }
+        padding-bottom: 16px;
+      }
+    }
+  }
+
+  &__actions {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    >.mdl-checkbox {
+      width: auto;
+      padding-right: 8px;
+    }
+  }
+
+  &--border {
+    border-top: 1px solid rgba(0,0,0,.1);
+  }
+
+  h3 {
+    font-size: 1em;
+    margin: 0;
+  }
+}
+
+.panel__list {
+  &-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+}
