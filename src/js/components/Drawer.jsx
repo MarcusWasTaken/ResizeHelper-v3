@@ -5,19 +5,28 @@ import _ from 'underscore'
 import { lib, MdlInputWrapper, MdlRadioInputWrapper } from 'js/lib'
 import { Modal, ModalTitle, ModalContent, ModalActions } from 'components/modal'
 
+import 'css/modules/drawer'
+
 const Drawer = React.createClass({
   clearImage: function() {
     this.props.onUserInput({
       activeImage: { $set: {} }
     });
   },
+  changePage: function(page) {
+    this.props.onPageChange(page)
+  },
   render: function() {
     return (
-      <div className="helper-drawer mdl-layout__drawer">
+      <div className="rh-drawer mdl-layout__drawer">
         <span className="mdl-layout-title mdl-color--primary mdl-color-text--white">Resize helper</span>
-        <nav className="helper-navigation mdl-navigation">
-        <h3 className="helper-navigation-title">Pages</h3>
-          <a className="mdl-navigation__link" onClick={this.clearImage}>About</a>
+        <nav className="rh-navigation mdl-navigation">
+          <a className="mdl-navigation__link" onClick={this.changePage}>
+            <i className="material-icons md-18">info</i>About
+          </a>
+          <a className="mdl-navigation__link" onClick={this.changePage}>
+            <i className="material-icons md-18">settings</i>Options
+          </a>
         </nav>
         <ImageList
           images={this.props.app.images}
@@ -73,14 +82,13 @@ const ImageList = React.createClass({
         )
       : null;
     return (
-      <nav className="helper-navigation mdl-navigation">
-        <h3 className="helper-navigation-title">Images</h3>
+      <nav className="rh-navigation mdl-navigation">
+        <h3 className="rh-navigation-title">Images</h3>
+        <a className="mdl-navigation__link" onClick={this.handleCreate}>
+          <i className="material-icons md-18">add_circle</i>New Image
+        </a>
+        <br/>
         {images}
-        <span className="mdl-navigation__link no_hover">
-          <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.handleCreate}>
-            New Image
-          </button>
-        </span>
         {modal}
       </nav>
     );
@@ -95,7 +103,7 @@ const ImageListModal = React.createClass({
         ref={(ref) => { ref != null ? this.modal = ref.refs.modal : false }}
         onUserClose={this.props.onUserClose}
       >
-        <ModalTitle>Image</ModalTitle>
+        <ModalTitle>New Image</ModalTitle>
         <ModalContent>
           <MdlInputWrapper label="Name">
             <input defaultValue={this.props.object.name} name="name" />
@@ -149,7 +157,8 @@ const ImageItem = React.createClass({
         className={'mdl-navigation__link' + (isActive ? ' active' : '')}
         onClick={this.handleImageChange}
       >
-        {this.props.image.name}
+        <i className="material-icons md-18">image</i>
+        <span className="truncate">{this.props.image.name}</span>
       </a>
     );
   }

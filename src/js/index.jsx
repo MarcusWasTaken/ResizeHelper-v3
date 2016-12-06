@@ -6,6 +6,7 @@ import _ from 'underscore'
 import { lib } from 'js/lib'
 import AboutPage from 'pages/aboutpage'
 import ImagePage from 'pages/imagepage'
+import OptionsPage from 'pages/optionspage'
 import Drawer from 'components/drawer'
 
 import 'normalize.css'
@@ -26,7 +27,8 @@ const App = React.createClass({
       app: {
         images: [],
         activeImage: {},
-        devices: DEVICES
+        devices: DEVICES,
+        activePage: 'about'
       }
     };
   },
@@ -157,23 +159,46 @@ const App = React.createClass({
       $set: image
     });
   },
-  render: function() {
-    var pageToRender = _.isEmpty(this.state.app.activeImage)
-      ? <AboutPage />
-      : <ImagePage
+  handlePageChange: function(page) {
+    if(page != this.state.activePage) {
+      this.handleChange({
+        activePage: { $set: page }
+      })
+    }
+  },
+  pageToRender: function() {
+    if(this.state.app.activePage == 'about') {
+      return <AboutPage />
+    } else if (this.state.app.activePage == 'options') {
+      return <OptionsPage />
+    } else if (this.state.app.activePage == 'image') {
+      return (
+        <ImagePage
           app={this.state.app}
           onChange={this.handleChange}
           onImageChange={this.handleActiveImageChange}
-        />;
+        />
+      )
+    }
+  },
+  render: function() {
+    // var pageToRender = _.isEmpty(this.state.app.activeImage)
+    //   ? <AboutPage />
+    //   : <ImagePage
+    //       app={this.state.app}
+    //       onChange={this.handleChange}
+    //       onImageChange={this.handleActiveImageChange}
+    //     />;
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <Drawer
           app={this.state.app}
           onUserInput={this.handleChange}
           onUserImageChange={this.handleImageChange}
+          onPageChange={this.handlePageChange}
         />
         <main className="mdl-layout__content mdl-color--grey-100">
-          {pageToRender}
+          {this.pageToRender()}
         </main>
       </div>
     );
