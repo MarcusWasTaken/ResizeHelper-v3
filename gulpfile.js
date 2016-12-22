@@ -52,7 +52,7 @@ gulp.task('serve', ['build:dev'], () => {
       baseDir: ['.tmp', 'src']
     }
   });
-  gulp.watch('src/**/*.*', ['build:dev', reload]);
+  gulp.watch('src/**/**/*.*', ['build:dev', reload]);
 });
 
 

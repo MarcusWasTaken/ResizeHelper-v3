@@ -22,15 +22,18 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-load-plugins": "^1.4.0",
     "gulp-util": "^3.0.7",
-    "immutability-helper": "^2.0.0",
     "node-sass": "^3.9.1",
-    "normalize.css": "^5.0.0",
-    "postcss-loader": "^1.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "sass-loader": "^4.0.1",
     "style-loader": "^0.13.1",
-    "underscore": "^1.8.3",
     "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "flux": "^3.1.2",
+    "keymirror": "^0.1.1",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0"
   }
 }

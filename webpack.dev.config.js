@@ -35,8 +35,12 @@ const config = {
     extensions: ['', '.js', '.jsx', '.css', '.scss'],
     root: [path.join(__dirname, './src')],
     alias: {
-      components: path.resolve(__dirname, 'src/js/components/'),
-      pages: path.resolve(__dirname, 'src/js/pages/')
+      css: path.resolve(__dirname, 'src/css'),
+      pres: path.resolve(__dirname, 'src/js/components/presentational'),
+      func: path.resolve(__dirname, 'src/js/components/functional'),
+      js: path.resolve(__dirname, 'src/js'),
+      actions: path.resolve(__dirname, 'src/js/actions'),
+      reducers: path.resolve(__dirname, 'src/js/reducers')
     }
   }
 }
